@@ -107,7 +107,6 @@ impl Library {
                 return Some(song);
             }
         }
-        println!("Could not find song name '{}'", song_title);
         None
     }
 
@@ -131,7 +130,6 @@ impl Library {
                 return Some(song);
             }
         }
-        println!("Could not find song by '{}'", song_artist);
         None
     }
 

@@ -16,6 +16,7 @@ pub fn handler(user: &mut User) {
             .read_line(&mut command_input)
             .expect("Could not read command input!");
         let command_input = command_input.trim().replace(" ", "");
+        let command_input = command_input.to_lowercase();
         command = &command_input[0..command_input.len()];
 
         // Parse input and run command
@@ -55,6 +56,12 @@ fn help() {
 
 // Display currently logged-in user
 fn who_is_user(user: &User) {
+    let mut asterisks = String::new();
+    
+    for char in 0..user.password.chars().count() -3 {
+        asterisks += "*";
+    }
+    
     println!("Current user: {}", user.username);
-    println!("Password length: {}", user.password.len());
+    println!("Password length: {}{}", String::from(&user.password[0..3]), asterisks);
 }
