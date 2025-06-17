@@ -6,10 +6,11 @@ use std::io::{Write, stdin, stdout};
 // User struct
 pub struct User {
     pub username: String,
-    password: String,
+    pub password: String,
     pub library: Library,
 }
 
+// Create user account
 pub fn register() -> User {
     // New account credentials
     let mut new_username = String::new();
