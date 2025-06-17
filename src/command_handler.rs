@@ -23,7 +23,10 @@ pub fn handler(user: &mut User) {
             "help" => help(),
             "who_is_artist" => who_is_artist(user),
             "new" => user.library.new_song(),
+            "upt" => user.library.update_song(),
             "ls_songs" => user.library.list_all_songs(),
+            "search_t" => { user.library.search_by_title(); },
+            "search_a" => { user.library.search_by_artists(); },
             _ => println!("Invalid command! Use 'help' to show all commands"),
         };
     }
@@ -36,6 +39,9 @@ fn help() {
     println!("  'help' -> Show this command again");
     println!("  'ls_songs' -> List all songs ");
     println!("  'new' -> Create new song ");
+    println!("  'upt' -> Update an existing song ");
+    println!("  'search_t' -> Search song(s) by title ");
+    println!("  'search_a' -> Search song(s) by artist ");
 }
 
 // Display currently logged-in user
