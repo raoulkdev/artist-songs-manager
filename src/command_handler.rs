@@ -21,8 +21,11 @@ pub fn handler(user: &mut User) {
         // Parse input and run command
         match command {
             "help" => help(),
-            "exit" => std::process::exit(0),
-            "who_is_artist" => who_is_artist(user),
+            "exit" => {
+                println!("Deleting account...");
+                std::process::exit(0);
+            }
+            "who_is_user" => who_is_user(user),
             "new" => user.library.new_song(),
             "upt" => user.library.update_song(),
             "ls_songs" => user.library.list_all_songs(),
@@ -40,7 +43,7 @@ pub fn handler(user: &mut User) {
 // Display all commands
 fn help() {
     println!("All commands are:");
-    println!("  'who_is_artist' -> List the current user");
+    println!("  'who_is_user' -> List the current user");
     println!("  'help' -> Show this command again");
     println!("  'ls_songs' -> List all songs ");
     println!("  'new' -> Create new song ");
@@ -51,7 +54,7 @@ fn help() {
 }
 
 // Display currently logged-in user
-fn who_is_artist(user: &User) {
+fn who_is_user(user: &User) {
     println!("Current user: {}", user.username);
     println!("Password length: {}", user.password.len());
 }
