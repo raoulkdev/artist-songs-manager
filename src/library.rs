@@ -8,7 +8,7 @@ pub struct Song {
 }
 
 impl Song {
-    pub fn update(&mut self){
+    pub fn update(&mut self) {
         // New account credentials
         let mut new_title = String::new();
         let mut new_artists = String::new();
@@ -28,7 +28,7 @@ impl Song {
             .read_line(&mut new_artists)
             .expect("Could not read new song artist(s) input!");
         let new_artists = String::from(new_artists.trim());
-        
+
         self.title = new_title;
         self.artist = new_artists;
     }
@@ -72,16 +72,16 @@ impl Library {
 
     // Print all songs
     pub fn list_all_songs(&self) {
-        if !&self.songs.is_empty(){
+        if !&self.songs.is_empty() {
             for song in &self.songs {
                 println!("{} by {}", song.title, song.artist);
             }
-        } else { 
+        } else {
             println!("There are no songs!");
         }
     }
-    
-    pub fn search_by_title(&mut self) -> Option<&mut Song>{
+
+    pub fn search_by_title(&mut self) -> Option<&mut Song> {
         // Song title
         let mut song_title = String::new();
 
@@ -92,18 +92,18 @@ impl Library {
             .read_line(&mut song_title)
             .expect("Could not read song title input!");
         let song_title = String::from(song_title.trim());
-        
+
         for song in &mut self.songs {
             if song.title == song_title {
                 println!("{} by {}", song.title, song.artist);
-                return Some(song)
+                return Some(song);
             }
         }
         println!("Could not find song name '{}'", song_title);
         None
     }
 
-    pub fn search_by_artists(&mut self) -> Option<&mut Song>{
+    pub fn search_by_artists(&mut self) -> Option<&mut Song> {
         // Song artist(s)
         let mut song_artist = String::new();
 
@@ -118,14 +118,14 @@ impl Library {
         for song in &mut self.songs {
             if song.artist == song_artist {
                 println!("{} by {}", song.title, song.artist);
-                return Some(song)
+                return Some(song);
             }
         }
-        
+
         println!("Could not find song by '{}'", song_artist);
         None
     }
-    
+
     pub fn update_song(&mut self) {
         let mut search_type_input = String::new();
         let search_type;
@@ -137,21 +137,20 @@ impl Library {
             .read_line(&mut search_type_input)
             .expect("Could not read search type input!");
         search_type = search_type_input.trim().parse().expect("Invalid input!");
-        
-        match search_type { 
-            1 => match self.search_by_title() { 
+
+        match search_type {
+            1 => match self.search_by_title() {
                 Some(s) => s.update(),
-                None => println!("Could not find song!")
-            }
+                None => println!("Could not find song!"),
+            },
 
             2 => match self.search_by_artists() {
                 Some(s) => s.update(),
-                None => println!("Could not find song!")
-            }
-            
-            _ => println!("Invalid number!")
+                None => println!("Could not find song!"),
+            },
+
+            _ => println!("Invalid number!"),
         };
-        
     }
 
     // TODO: Add: possibly exporting as json

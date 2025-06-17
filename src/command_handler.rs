@@ -25,8 +25,12 @@ pub fn handler(user: &mut User) {
             "new" => user.library.new_song(),
             "upt" => user.library.update_song(),
             "ls_songs" => user.library.list_all_songs(),
-            "search_t" => { user.library.search_by_title(); },
-            "search_a" => { user.library.search_by_artists(); },
+            "search_t" => {
+                user.library.search_by_title();
+            }
+            "search_a" => {
+                user.library.search_by_artists();
+            }
             _ => println!("Invalid command! Use 'help' to show all commands"),
         };
     }
