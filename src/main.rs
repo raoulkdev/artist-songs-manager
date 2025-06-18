@@ -2,6 +2,7 @@
 mod auth;
 mod command_handler;
 mod library;
+mod song;
 
 fn main() {
     // Setup account
