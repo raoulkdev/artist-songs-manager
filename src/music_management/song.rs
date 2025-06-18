@@ -1,4 +1,4 @@
-use std::io::{stdin, stdout, Write};
+use std::io::{Write, stdin, stdout};
 
 // Song struct
 pub struct Song {
@@ -8,6 +8,22 @@ pub struct Song {
 
 // Song functions
 impl Song {
+    // New empty song
+    pub fn new() -> Self {
+        Self {
+            title: String::new(),
+            artist: String::new(),
+        }
+    }
+
+    // New song with info
+    pub fn from(title: &str, artist: &str) -> Self {
+        Self {
+            title: String::from(title),
+            artist: String::from(artist),
+        }
+    }
+
     // Update song info
     pub fn update(&mut self) {
         // Song new info

@@ -1,6 +1,6 @@
 // Imports
-use std::io::{Write, stdin, stdout};
 use crate::song::Song;
+use std::io::{Write, stdin, stdout};
 
 // Full artist library struct
 pub struct Library {
@@ -21,7 +21,7 @@ impl Library {
         stdin()
             .read_line(&mut new_title)
             .expect("Could not read new song title input!");
-        let new_title = String::from(new_title.trim());
+        let new_title = new_title.trim();
 
         // New song artists input
         print!("New song artist(s): ");
@@ -29,13 +29,10 @@ impl Library {
         stdin()
             .read_line(&mut new_artists)
             .expect("Could not read new song artist(s) input!");
-        let new_artists = String::from(new_artists.trim());
+        let new_artists = new_artists.trim();
 
         // Create new song
-        let new_song = Song {
-            title: new_title,
-            artist: new_artists,
-        };
+        let new_song = Song::from(new_title, new_artists);
 
         // Add new song to library
         self.songs.push(new_song);
