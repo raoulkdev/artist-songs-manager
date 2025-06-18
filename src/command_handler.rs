@@ -57,11 +57,16 @@ fn help() {
 // Display currently logged-in user
 fn who_is_user(user: &User) {
     let mut asterisks = String::new();
-    
-    for char in 0..user.password.chars().count() -3 {
+    let show_amount = user.password.chars().count() / 4;
+
+    for char in 0..user.password.chars().count() - show_amount {
         asterisks += "*";
     }
-    
+
     println!("Current user: {}", user.username);
-    println!("Password length: {}{}", String::from(&user.password[0..3]), asterisks);
+    println!(
+        "Password hint: {}{}",
+        String::from(&user.password[0..show_amount]),
+        asterisks
+    );
 }
